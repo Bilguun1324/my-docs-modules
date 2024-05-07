@@ -1,0 +1,16 @@
+type Article {
+    id: ID
+    title: String
+    content: String
+}
+
+type Query {
+    getArticles: [Article]
+    getArticle(id: ID!): Article
+}
+
+type Mutation {
+    addArticle(title: String!, content: String): Article
+    updateArticle(id: ID!, title: String!, content: String): Article
+    deleteArticle(id: ID!): Article
+}
