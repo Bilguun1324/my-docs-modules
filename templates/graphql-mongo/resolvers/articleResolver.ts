@@ -13,11 +13,9 @@ const addArticle = async (_: any, params: any) => {
 };
 
 const updateArticle = async (_: any, params: any) => {
-  const Article = new ArticleModel(params);
-
   try {
     // Update given Article
-    await Article.updateOne({ _id: params.id }, params);
+    const Article = await ArticleModel.updateOne({ _id: params.id }, params);
     return Article;
   } catch (err) {
     return err;
@@ -27,8 +25,8 @@ const updateArticle = async (_: any, params: any) => {
 const deleteArticle = async (_: any, params: any) => {
   try {
     // Delete given Article
-    await ArticleModel.deleteOne({ _id: params.id });
-    return params;
+    const Article = await ArticleModel.deleteOne({ _id: params.id });
+    return Article;
   } catch (err) {
     return err;
   }
@@ -37,7 +35,7 @@ const deleteArticle = async (_: any, params: any) => {
 const getArticle = async (_: any, params: any) => {
   try {
     // Find the Article by ID
-    const Article = await ArticleModel.findOne(params);
+    const Article = await ArticleModel.findOne({ _id: params.id });
     return Article;
   } catch (err) {
     return err;
